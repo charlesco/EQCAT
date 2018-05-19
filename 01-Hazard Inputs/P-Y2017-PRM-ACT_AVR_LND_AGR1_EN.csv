@@ -1,0 +1,159 @@
+#,,,,,,,
+# VER. = 1.0,,,,,,,
+#,,,,,,,
+# DATE = 2017-04-12,,,,,,,
+#,,,,,,,
+# UPDATED,,,,,,,
+#,,,,,,,
+# EPOCH = 2017-01-01,,,,,,,
+# CODE,PROC,AVRACT,NEWACT,ALPHA,P_T30,P_T50,NAME
+G030001,POI,1000,-,0,2.96E-02,4.88E-02,Rausu-dake fault zone
+G030002,POI,1500,-,0,1.98E-02,3.28E-02,Shari-dake-higashi fault zone
+G030003,POI,4800,-,0,6.23E-03,1.04E-02,Abashiri-ko fault zone
+G030004,POI,3200,-,0,9.33E-03,1.55E-02,Tokoro-gawa-togan fault
+G030005,POI,12200,-,0,2.46E-03,4.09E-03,Toikanbetsu fault zone
+G030008,POI,3500,-,0,8.53E-03,1.42E-02,Ponnitashibetsu fault
+G030009,POI,3800,-,0,7.86E-03,1.31E-02,Mitsuishi-Urakawa fault zone
+G030011,POI,7900,-,0,3.79E-03,6.31E-03,Nohoro-kyuryo fault zone
+G030012,POI,7900,-,0,3.79E-03,6.31E-03,Shiribetsu-gawa fault zone
+G030013,POI,800,-,0,3.68E-02,6.06E-02,Yakumo fault zone
+G030014,POI,6400,-,0,4.68E-03,7.78E-03,Noheji fault zone
+G030015,POI,49600,-,0,6.05E-04,1.01E-03,Tsugaru-sanchi-seien fault zone hokubu hoppou enchou
+G030016,POI,3500,-,0,8.53E-03,1.42E-02,Iwaki-san-nanroku fault zone
+G030018,POI,28700,-,0,1.04E-03,1.74E-03,Takizawaukai-nishi fault (kitakami zambu)
+G030019,POI,2000,-,0,1.49E-02,2.47E-02,Tazawa-ko fault zone
+G030020,POI,5100,-,0,5.87E-03,9.76E-03,Kitaguchi fault zone
+G030021,POI,35500,-,0,8.45E-04,1.41E-03,Yokote-bonchi-senan fault zone
+G030022,POI,7600,-,0,3.94E-03,6.56E-03,Toridame fault zone
+G030023,POI,3500,-,0,8.53E-03,1.42E-02,Kamagadai fault zone
+G030024,POI,800,-,0,3.68E-02,6.06E-02,Kisakata fault zone
+G030025,POI,36500,-,0,8.22E-04,1.37E-03,Asahiyama flexure zone
+G030026,POI,36400,-,0,8.24E-04,1.37E-03,Medeshima-suite fault
+G030027,POI,26500,-,0,1.13E-03,1.89E-03,Sakunami-Yashikidaira fault zone
+G030028,POI,2900,-,0,1.03E-02,1.71E-02,Togatta fault zone
+G030029,POI,2200,-,0,1.35E-02,2.25E-02,Obanazawa fault zone
+G030031,POI,3200,-,0,9.33E-03,1.55E-02,Kotaru-gawa fault zone
+G030032,POI,120000,-,0,2.50E-04,4.17E-04,Futaba fault nambu C-class zan
+G030033,POI,12700,-,0,2.36E-03,3.93E-03,Osaka-Ashizawa fault zone
+G030034,POI,3200,-,0,9.33E-03,1.55E-02,Futatsuya fault
+G030035,POI,5700,-,0,5.25E-03,8.73E-03,Sangunmori fault zone
+G030036,POI,3800,-,0,7.86E-03,1.31E-02,Yunotake fault
+G030037,POI,62900,-,0,4.77E-04,7.95E-04,Idosawa fault
+G030038,POI,56300,-,0,5.33E-04,8.88E-04,Takahagi-fukin suite
+G030039,POI,66200,-,0,4.53E-04,7.55E-04,Tanagura fracture zone seien fault
+G030040,POI,2400,-,0,1.24E-02,2.06E-02,Adatara-yama-toroku fault zone
+G030041,POI,11900,-,0,2.52E-03,4.19E-03,Kawageta-yama fault zone
+G030042,POI,59600,-,0,5.03E-04,8.39E-04,Shirakawa-seho fault zone
+G030043,POI,25400,-,0,1.18E-03,1.97E-03,Hinoemata-nishi fault
+G030044,POI,3500,-,0,8.53E-03,1.42E-02,Kokuzoyama-toho fault
+G030045,POI,3200,-,0,9.33E-03,1.55E-02,Hanezu fault zone
+G030046,POI,5100,-,0,5.87E-03,9.76E-03,Numakoshi-toge fault
+G030047,POI,4800,-,0,6.23E-03,1.04E-02,Yoshinoya fault
+G030048,POI,5800,-,0,5.16E-03,8.58E-03,Yukyu-zan fault zone
+G030049,POI,3500,-,0,8.53E-03,1.42E-02,Jorakuji fault
+G030050,POI,11100,-,0,2.70E-03,4.49E-03,Osado-segan fault zone
+G030051,POI,1600,-,0,1.86E-02,3.08E-02,Kuninaka-heiya-minami fault
+G030053,POI,3200,-,0,9.33E-03,1.55E-02,Hirataki-Busuno-toge fault
+G030056,POI,3500,-,0,8.53E-03,1.42E-02,Togakushi-yama fault
+G030057,POI,22200,-,0,1.35E-03,2.25E-03,Jonen-dake-higashi fault zone
+G030059,POI,12700,-,0,2.36E-03,3.93E-03,Saotome-dake fault
+G030060,POI,5700,-,0,5.25E-03,8.73E-03,Noto fault zone
+G030061,POI,1600,-,0,1.86E-02,3.08E-02,Kirigamine fault zone
+G030062,POI,10000,-,0,3.00E-03,4.99E-03,Kamogawa-techi fault zone kita fault
+G030064,POI,47300,-,0,6.34E-04,1.06E-03,Tsurukawa fault
+G030065,POI,16700,-,0,1.79E-03,2.99E-03,Ogiyama fault
+G030067,POI,700,-,0,4.20E-02,6.89E-02,Hadano fault zone
+G030069,POI,5600,-,0,5.34E-03,8.89E-03,Tanna fault zone nantan group
+G030070,POI,2900,-,0,1.03E-02,1.71E-02,Daruma-yama fault zone
+G030072,POI,4800,-,0,6.23E-03,1.04E-02,Nihondaira fault zone
+G030073,POI,22000,-,0,1.36E-03,2.27E-03,Hatanagi-san fault
+G030074,POI,16500,-,0,1.82E-03,3.03E-03,Chuo-kozosen-Akaishi-sanchi-seien fault zone
+G030075,POI,8600,-,0,3.48E-03,5.80E-03,Shimoina-ryuto fault zone
+G030076,POI,15900,-,0,1.89E-03,3.14E-03,Hiraoka fault
+G030078,POI,3200,-,0,9.33E-03,1.55E-02,Suzugasawa fault
+G030079,POI,1600,-,0,1.86E-02,3.08E-02,Shirosu-toge fault zone
+G030080,POI,4400,-,0,6.79E-03,1.13E-02,Wakatochi-toge fault
+G030081,POI,4800,-,0,6.23E-03,1.04E-02,Kuno-gawa fault
+G030082,POI,27000,-,0,1.11E-03,1.85E-03,Furukawa fault zone (Toichi-gawa fault)
+G030083,POI,33800,-,0,8.87E-04,1.48E-03,Kuchiudo-Yamanokuchi fault
+G030084,POI,80000,-,0,3.75E-04,6.25E-04,Byobu-yama fault nanseibu
+G030085,POI,12700,-,0,2.36E-03,3.93E-03,Kasahara fault
+G030086,POI,7900,-,0,3.79E-03,6.31E-03,Hanadate fault
+G030087,POI,3500,-,0,0.00E+00,0.00E+00,Fukozu fault zone
+G030088,POI,8700,-,0,3.44E-03,5.73E-03,Nagoyashi-fukin fault
+G030089,POI,150000,-,0,2.00E-04,3.33E-04,Tenpaku-kako fault
+G030090,POI,5400,-,0,5.54E-03,9.22E-03,Bijo-zan fault zone
+G030091,POI,2000,-,0,1.49E-02,2.47E-02,Tanigumi-Kochibora fault
+G030092,POI,5100,-,0,5.87E-03,9.76E-03,Ikedayama fault
+G030093,POI,9800,-,0,3.06E-03,5.09E-03,Tsushima fault zone
+G030094,POI,4100,-,0,7.29E-03,1.21E-02,Suzukaoki fault
+G030095,POI,6000,-,0,4.99E-03,8.30E-03,Yoro-sanchi-seien fault zone
+G030096,POI,13500,-,0,2.22E-03,3.70E-03,Hokyoji fault
+G030097,POI,2600,-,0,1.15E-02,1.90E-02,Kanekusa-dake fault zone
+G030098,POI,10300,-,0,2.91E-03,4.84E-03,Okukawanami fault
+G030099,POI,9500,-,0,3.15E-03,5.25E-03,Sarake fault
+G030100,POI,13500,-,0,2.22E-03,3.70E-03,Hosenji fault zone
+G030101,POI,69500,-,0,4.32E-04,7.19E-04,Mihama-wan-oki fault
+G030102,POI,3500,-,0,8.53E-03,1.42E-02,Mimi-kawa fault zone
+G030103,POI,3800,-,0,7.86E-03,1.31E-02,Biwako-togan-kotei fault
+G030104,POI,8700,-,0,3.44E-03,5.73E-03,Kumagawa fault zone
+G030105,POI,4400,-,0,6.79E-03,1.13E-02,Biwako-nambu-kotei fault
+G030106,POI,40600,-,0,7.39E-04,1.23E-03,Odorii fault zone
+G030107,POI,7900,-,0,3.79E-03,6.31E-03,Suzuka-sakashita fault zone
+G030108,POI,3200,-,0,9.33E-03,1.55E-02,Kyogamine-minami fault
+G030109,POI,33800,-,0,8.87E-04,1.48E-03,Chuo-kozosen Taki
+G030110,POI,27000,-,0,1.11E-03,1.85E-03,Ieki fault zone
+G030111,POI,49000,-,0,6.12E-04,1.02E-03,Nabari fault zone
+G030112,POI,5100,-,0,5.87E-03,9.76E-03,Shigaraki fault zone
+G030113,POI,4400,-,0,6.79E-03,1.13E-02,Wazuka-dani fault
+G030114,POI,16900,-,0,1.77E-03,2.95E-03,Tahara fault
+G030115,POI,4000,-,0,7.47E-03,1.24E-02,Ayame-ike flexure zone
+G030116,POI,7600,-,0,3.94E-03,6.56E-03,Keihanna-kyuryo flexure zone
+G030117,POI,4800,-,0,6.23E-03,1.04E-02,Habikino fault zone
+G030118,POI,27000,-,0,1.11E-03,1.85E-03,Izumi-hokuroku fault zone
+G030119,POI,60800,-,0,4.93E-04,8.22E-04,Chuo-kozosen Gojo
+G030120,POI,5100,-,0,5.87E-03,9.76E-03,Habu fault
+G030121,POI,29100,-,0,1.03E-03,1.72E-03,Nakayama fault zone
+G030122,POI,33100,-,0,9.06E-04,1.51E-03,Mitakesan fault
+G030123,POI,9200,-,0,3.26E-03,5.42E-03,Gosho-dani fault zone
+G030124,POI,3800,-,0,7.86E-03,1.31E-02,Takatsuka-yama fault
+G030125,POI,7900,-,0,3.79E-03,6.31E-03,Shizuki fault zone
+G030126,POI,23700,-,0,1.27E-03,2.11E-03,Hansanji fault zone
+G030127,POI,6700,-,0,4.47E-03,7.43E-03,Yabu fault zone
+G030128,POI,20300,-,0,1.48E-03,2.46E-03,Akenobe-hoppo fault
+G030129,POI,16900,-,0,1.77E-03,2.95E-03,Hikihara fault
+G030135,POI,36400,-,0,8.24E-04,1.37E-03,Fukuyama fault zone
+G030136,POI,33100,-,0,9.06E-04,1.51E-03,Mitsugi fault
+G030137,POI,16900,-,0,1.77E-03,2.95E-03,Shobara fault
+G030138,POI,18600,-,0,1.61E-03,2.68E-03,Miyoshi fault zone
+G030139,POI,4800,-,0,6.23E-03,1.04E-02,Kamine fault
+G030143,POI,53000,-,0,5.66E-04,9.43E-04,Shibuki fault
+G030144,POI,4100,-,0,7.29E-03,1.21E-02,Tokushima-heiya-nanen fault zone
+G030145,POI,92700,-,0,3.24E-04,5.39E-04,Akui-gawa fault zone
+G030146,POI,72800,-,0,4.12E-04,6.87E-04,Ebata fault zone
+G030147,POI,49600,-,0,6.05E-04,1.01E-03,Takanawa-san-kita fault
+G030148,POI,3500,-,0,8.53E-03,1.42E-02,Tsunatsukimori fault
+G030150,POI,5400,-,0,5.54E-03,9.22E-03,Gyodo-zaki fault
+G030151,POI,17500,-,0,1.71E-03,2.85E-03,Kochi-Agawa
+G030152,POI,86100,-,0,3.48E-04,5.81E-04,Sukumo-Nakamura fault zone
+G030153,POI,33100,-,0,9.06E-04,1.51E-03,Tosashimizu-kita fault zone
+G030172,POI,5600,-,0,5.34E-03,8.89E-03,Tanega-shima-hokubu fault
+G030173,POI,4800,-,0,6.23E-03,1.04E-02,Yaku-shima-nangan fault zone
+G030174,POI,1100,-,0,2.69E-02,4.44E-02,Kikai-jima fault zone
+G030175,POI,4100,-,0,7.29E-03,1.21E-02,Okinoerabu-jima fault zone
+G030176,POI,3500,-,0,8.53E-03,1.42E-02,Kinwan-segan fault zone
+G030178,POI,3500,-,0,8.53E-03,1.42E-02,Yonaguni-jima fault zone
+G030180,POI,39700,-,0,7.55E-04,1.26E-03,Ube-toubu-Shimosato fault
+G030181,POI,53000,-,0,5.66E-04,9.43E-04,Ube-nantou-oki fault zone
+G030182,POI,59600,-,0,5.03E-04,8.39E-04,Hime-jima-hokusei-oki fault zone
+G030183,POI,15000,-,0,2.00E-03,3.33E-03,Itoshima-hanto-Oki fault group
+G030184,POI,32000,-,0,9.37E-04,1.56E-03,Saganoseki fault
+G030185,POI,32000,-,0,9.37E-04,1.56E-03,Taradake-nanseiroku fault zone
+G030186,POI,63000,-,0,4.76E-04,7.93E-04,Fukuragi fault
+G030187,POI,38000,-,0,7.89E-04,1.31E-03,Aso-gairin-nanroku fault group
+G030188,POI,63000,-,0,4.76E-04,7.93E-04,Tsurukiba fault zone
+G030189,POI,63000,-,0,4.76E-04,7.93E-04,Kunimidake fault zone
+G030190,POI,32000,-,0,9.37E-04,1.56E-03,Minamata fault zone
+G030191,POI,5800,-,0,5.16E-03,8.58E-03,Kagoshimawan-toen fault zone
+G030192,POI,63000,-,0,4.76E-04,7.93E-04,Kagoshimawan-seien fault zone
+G030193,POI,1500,-,0,1.98E-02,3.28E-02,Ikedako-nishi fault zone

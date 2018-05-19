@@ -1,0 +1,81 @@
+Start date,End date,Country,Iso,Location,Disaster type,Disaster subtype,Total damage ('000 US$),insured_losses,Total deaths,Disaster No.
+07/07/1900,07/07/1900,Japan,JPN,,Volcanic activity,Ash fall,0,0,30,1900-0008
+10/08/1901,10/08/1901,Japan,JPN,Sanriku,Earthquake,Tsunami,0,0,18,1901-0004
+/08/1902,/08/1902,Japan,JPN,Torishima,Volcanic activity,Ash fall,0,0,125,1902-0008
+07/07/1907,07/07/1907,Japan,JPN,Fukushima,Earthquake,Tsunami,0,0,41,1905-0007
+03/01/1914,03/01/1914,Japan,JPN,,Volcanic activity,Ash fall,20000,0,140,1914-0002
+18/03/1914,18/03/1914,Japan,JPN,Akita Senboku,Earthquake,Ground movement,0,0,94,1914-0025
+12/01/1914,12/01/1914,Japan,JPN,Seikaido,Earthquake,Tsunami,0,0,35,1914-0026
+01/09/1923,01/09/1923,Japan,JPN,"Kanto plaine (Yokohama,Tokyo)",Earthquake,Ground movement,600000,0,143000,1923-0006
+01/09/1923,01/09/1923,Japan,JPN,"Atami, Ito, Simoda, Tokaido",Earthquake,Tsunami,0,0,2144,1923-0010
+//1926,//1926,Japan,JPN,Hokkaido Isl.,Volcanic activity,Ash fall,0,0,144,1926-0019
+07/03/1927,07/03/1927,Japan,JPN,Kita-tango (South-West Kyoto),Earthquake,Tsunami,40000,0,2925,1927-0003
+07/03/1927,07/03/1927,Japan,JPN,"Tango, Honshu",Earthquake,Ground movement,40000,0,2925,1927-0004
+25/11/1930,25/11/1930,Japan,JPN,Ito,Earthquake,Ground movement,0,0,0,1930-0012
+03/03/1933,03/03/1933,Japan,JPN,Sanriku,Earthquake,Tsunami,0,0,3000,1933-0001
+02/03/1933,02/03/1933,Japan,JPN,"Sanriku coast, Kamaishi (Honshu Isl.)",Earthquake,Tsunami,25000,0,3064,1933-0006
+10/09/1943,10/09/1943,Japan,JPN,Tottori (Honshu Isl.),Earthquake,Ground movement,0,0,1083,1943-0027
+07/12/1944,07/12/1944,Japan,JPN,"Tonankai, Hondo",Earthquake,Tsunami,0,0,998,1944-0026
+//1945,//1945,Japan,JPN,,Volcanic activity,Ash fall,80000,0,0,1945-0001
+12/01/1945,12/01/1945,Japan,JPN,"Mikawa (Near Nagoya, Honshu Isl.)",Earthquake,Ground movement,0,0,1961,1945-0015
+20/12/1946,20/12/1946,Japan,JPN,"Nankaido, Tonankai (Honshu Isl.)",Earthquake,Ground movement,0,0,2000,1946-0015
+28/06/1948,28/06/1948,Japan,JPN,Fukui,Earthquake,Ground movement,1000000,0,5131,1948-0005
+24/09/1952,24/09/1952,Japan,JPN,"Myozin-Syo, Izu Islands",Volcanic activity,Ash fall,0,0,29,1952-0007
+04/03/1952,04/03/1952,Japan,JPN,Hokkaido Isl.,Earthquake,Ground movement,0,0,30,1952-0022
+22/05/1960,22/05/1960,Japan,JPN,"Onagawa,  Honshu Island",Earthquake,Tsunami,140000,0,138,1960-0016
+16/06/1964,16/06/1964,Japan,JPN,"Niigata, Hodo Isl.",Earthquake,Tsunami,800000,5000,25,1964-0036
+16/05/1968,16/05/1968,Japan,JPN,Aomori Prefecture - Hokkaido,Earthquake,Ground movement,131000,0,47,1968-0050
+09/05/1974,09/05/1974,Japan,JPN,Izu-Hanto,Earthquake,Ground movement,0,0,30,1974-0026
+07/08/1977,07/08/1977,Japan,JPN,Sapporo,Volcanic activity,Ash fall,22000,0,3,1977-0103
+14/01/1978,14/01/1978,Japan,JPN,"Oshima, Yokohama",Earthquake,Ground movement,0,0,25,1978-0027
+12/06/1978,12/06/1978,Japan,JPN,Sendai (Near Esat coast of Honshu),Earthquake,Ground movement,865000,2000,28,1978-0080
+/06/1979,/06/1979,Japan,JPN,,Earthquake,Ground movement,0,0,27,1979-0274
+25/09/1980,25/09/1980,Japan,JPN,"Tokyo, Kanto region",Earthquake,Ground movement,0,0,2,1980-0092
+29/06/1980,29/06/1980,Japan,JPN,South coast of Honshu (Oshima Isl.),Earthquake,Ground movement,0,0,0,1980-0266
+21/03/1982,21/03/1982,Japan,JPN,Hokkaido,Earthquake,Ground movement,0,0,0,1982-0036
+26/05/1983,26/05/1983,Japan,JPN,"Nihon- Kai-Chubu, Western Honshu, Akita, Aomori, Hokkaido",Earthquake,Tsunami,416000,0,102,1983-0081
+03/10/1983,03/10/1983,Japan,JPN,Miyake-Jima Island,Volcanic activity,Ash fall,0,0,0,1983-0130
+08/08/1983,08/08/1983,Japan,JPN,Near South coast Honshu,Earthquake,Ground movement,0,0,1,1983-0437
+14/09/1984,14/09/1984,Japan,JPN,"Honshu, Nagano prefecture (Honshu)",Earthquake,Ground movement,43000,0,20,1984-0084
+06/08/1984,06/08/1984,Japan,JPN,Kyushu (Shikoku Island),Earthquake,Ground movement,0,0,0,1984-0335
+04/10/1985,04/10/1985,Japan,JPN,Near East coast of Honshu,Earthquake,Ground movement,0,0,0,1985-0319
+21/11/1986,21/11/1986,Japan,JPN,Oshima Island,Volcanic activity,Ash fall,0,0,0,1986-0135
+17/12/1987,17/12/1987,Japan,JPN,Chiba prefecture (Near Tokyo),Earthquake,Ground movement,0,0,2,1987-0229
+16/12/1988,16/12/1988,Japan,JPN,Tokachidake,Volcanic activity,Ash fall,0,0,0,1988-0695
+03/06/1991,08/06/1991,Japan,JPN,Kyushu Island,Volcanic activity,Ash fall,10000,0,43,1991-0228
+17/04/1992,17/04/1992,Japan,JPN,Shimabara (Kyushu Isl.),Volcanic activity,Ash fall,0,0,0,1992-0103
+02/02/1992,02/02/1992,Japan,JPN,Kanto area (Tokyo),Earthquake,Ground movement,0,0,0,1992-0252
+12/07/1993,12/07/1993,Japan,JPN,Okushiri Island (Hokkaido),Earthquake,Tsunami,1000000,16000,239,1993-0044
+15/01/1993,15/01/1993,Japan,JPN,Near Kushiro (Hokkaido),Earthquake,Ground movement,358000,0,2,1993-0097
+23/06/1993,23/06/1993,Japan,JPN,Nagasaki,Volcanic activity,Ash fall,0,0,1,1993-0175
+28/12/1994,28/12/1994,Japan,JPN,Hachinohe (North-East Honshu),Earthquake,Ground movement,170400,0,2,1994-0316
+04/10/1994,04/10/1994,Japan,JPN,East coast of Hokaido Isl.,Earthquake,Ground movement,0,11700,5,1994-0343
+17/01/1995,17/01/1995,Japan,JPN,"Kobe, Osaka, Hyigo, Kyoto prefecture",Earthquake,Ground movement,100000000,3000000,5297,1995-0016
+01/04/1995,01/04/1995,Japan,JPN,Niigata (Eastern Honshu),Earthquake,Ground movement,0,0,0,1995-0449
+31/03/2000,13/04/2000,Japan,JPN,"Abutatyoo, Datesi, Soobetutyoo districts (Hokkaidoo province)",Volcanic activity,Ash fall,0,0,0,2000-0176
+01/07/2000,01/07/2000,Japan,JPN,"Koodusimamura, Niizimamura districts (Tookyoo province)",Earthquake,Ground movement,0,0,1,2000-0428
+10/08/2000,10/08/2000,Japan,JPN,Miyakemura district (Tookyoo province),Volcanic activity,Ash fall,0,0,0,2000-0515
+06/10/2000,06/10/2000,Japan,JPN,"Aimityoo, Kisimototyoo, Mizokutityoo, Saihakutyoo, Daisentyoo, Nawatyoo, Nakayamatyoo, Hieduson districts (Tottori province), Simane, Okayama provinces",Earthquake,Ground movement,500000,150000,0,2000-0656
+24/03/2001,24/03/2001,Japan,JPN,"Hirosima, Ehime provinces",Earthquake,Ground movement,500000,128000,2,2001-0123
+26/05/2003,26/05/2003,Japan,JPN,"Iwate, Miyagi, Yamagata, Akita, Aomori provinces",Earthquake,Ground movement,233000,87000,0,2003-0249
+25/07/2003,25/07/2003,Japan,JPN,"Sendaisi_Aobaku, Sendaisi_Daisiroku, Sendaisi_Izumiku, Sendaisi_Miyaginoku, Sendaisi_Wakabayasiku, Isinomakisi, Hurukawasi, Kasimadaimati, Nangootyoon, Narusetyoo, Yamototyoo, Yoneyamatyoo districts (Miyagi province)",Earthquake,Ground movement,411000,202000,0,2003-0354
+25/09/2003,25/09/2003,Japan,JPN,Hokkaidoo province,Earthquake,Ground movement,563000,87000,2,2003-0476
+23/10/2004,23/10/2004,Japan,JPN,"Odiyasi, Nagaokasi, Tookamatisi districts (Niigata province)
+
+",Earthquake,Ground movement,28000000,760000,40,2004-0532
+20/03/2005,20/03/2005,Japan,JPN,Hukuoka province,Earthquake,Ground movement,400000,120000,1,2005-0129
+19/04/2005,19/04/2005,Japan,JPN,"Hukuoka, Saga provinces",Earthquake,Ground movement,0,0,0,2005-0211
+25/03/2007,25/03/2007,Japan,JPN,"Nanao, Wajima districts (Isikawa province), Niigata, Toyama provinces",Earthquake,Ground movement,250000,22000,1,2007-0101
+16/07/2007,16/07/2007,Japan,JPN,"Aikawamati, Akadomarimura, Hatanomati, Izumozakimati, Kanaimati, Kariwamura, Kasiwazakisi, Manomati, Nagaokasi, Niigatasi, Odiyasi, Ogimati, Sanzyoosi, Sawatamati, Yosidamati, Zyooetusi districts (Niigata province), Nagano, Toyama provinces",Earthquake,Ground movement,12500000,335000,9,2007-0258
+15/04/2007,15/04/2007,Japan,JPN,"Mie, Nara, Siga provinces",Earthquake,Ground movement,0,0,0,2007-0654
+13/06/2008,13/06/2008,Japan,JPN,"Mizusawasi, Moriokasi districts (Iwate province), Tukidatetyoo, Hurukawasi, Sendaisi_Aobaku, Sendaisi_Daisiroku, Sendaisi_Izumiku, Sendaisi_Miyaginoku, Sendaisi_Wakabayasiku districts (Miyagi province), Akita province",Earthquake,Ground movement,167000,55000,23,2008-0242
+23/07/2008,24/07/2008,Japan,JPN,Hatinohesi district (Aomori province),Earthquake,Ground movement,110000,0,1,2008-0275
+10/08/2009,10/08/2009,Japan,JPN,"Sizuokasi, Yaidusi, Sagaratyoo, Huziedasi, Simadasi, Kakegawasi, Haibaratyoo districts (Sizuola province), Tookyoo province",Earthquake,Tsunami,400000,250000,1,2009-0320
+11/03/2011,11/03/2011,Japan,JPN,"Hokkaidoo, Akita, Aomori, Yamagata, Miyagi, Iwate, Hukusima, Tookyoo, Ibaraki, Totigi, Gunma, Saitama, Tiba, Kanagawa, Nagano provinces",Earthquake,Tsunami,210000000,37500000,19846,2011-0082
+07/04/2011,07/04/2011,Japan,JPN,"Ishinomakisi, Onagawatyoo districts (Miyagi province), Yamagata province",Earthquake,Ground movement,0,0,2,2011-0130
+12/04/2013,12/04/2013,Japan,JPN,Hyogo province,Earthquake,Ground movement,0,0,0,2013-0127
+27/09/2014,30/09/2014,Japan,JPN,"Kaidamura, Mitakemura, Ootakimura districts (Nagano province), Asahimura, Osakatyoo, Takanemura districts (Gifu province)",Volcanic activity,--,0,0,63,2014-0336
+22/11/2014,22/11/2014,Japan,JPN,"Hakuba village (Hakubamura district, Nagano province)",Earthquake,Ground movement,0,0,0,2014-0465
+14/04/2016,14/04/2016,Japan,JPN,Kumamoto province (Kyushu Isl.),Earthquake,Ground movement,0,0,9,2016-0107
+16/04/2016,16/04/2016,Japan,JPN,"Kumamoto, Fukuoka, Saga, Oita, Miyazaki  provinces",Earthquake,Ground movement,20000000,5000000,49,2016-0121
+21/10/2016,21/10/2016,Japan,JPN,"Kurayoshi city (Kurayosisi district, Tottori province)",Earthquake,Ground movement,100000,0,0,2016-0492
