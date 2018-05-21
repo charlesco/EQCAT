@@ -4,23 +4,16 @@ from shapely.geometry import Point, shape
 import pandas as pd
 import shapefile
 from shapely.geometry import Polygon
-import matplotlib.pyplot as plt
 
 
-exposure_path = "../04-Exposure/"
-admin_path = "Administrative/"
-pref_shape_path = "Japan_adm1"
+exposure_path = '../04-Exposure/'
+admin_path = 'Administrative/'
+pref_shape_path = 'Japan_adm1'
 Prefecture = shapefile.Reader(exposure_path + admin_path + pref_shape_path)
 pref = pd.DataFrame(columns=['ID', 'Name', 'Shape'])
 pref['ID'] = [r[3] for r in Prefecture.records()]
 pref['Name'] = [r[4] for r in Prefecture.records()]
 pref['Shape'] = [shape(s) for s in Prefecture.shapes()]
-
-test = Prefecture
-for sr in test.shapeRecords():
-    for xNew,yNew in sr.shape.points:
-        plt.plot(xNew,yNew)
-plt.show()
 
 def cartesian(lat, lon):
     #  Convert lat, long to x, y in km

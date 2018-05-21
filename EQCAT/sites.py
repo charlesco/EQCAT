@@ -5,15 +5,18 @@ from geography import fmesh_distance, quarter_meshcode, prefecture
 from attenuation import amp_factors
 
 nb_sites_max = 50000
+exposure_path = '../04-Exposure/'
+gem_path = 'GEM/'
+site_effects_path = '../02-Site Effects/'
 
 def collect_exposure(shape, radius):
-    file_names = os.listdir('Exposure/')
+    file_names = os.listdir(exposure_path + gem_path)
     buildings = pd.DataFrame()
     sites = pd.DataFrame()
     for name in file_names:
         fcode = name.split('.')[0]
         if fmesh_distance(fcode, shape, radius):
-            exposure = pd.read_csv('Exposure/' + name)
+            exposure = pd.read_csv(exposure_path + gem_path + name)
             positions = exposure[['grid_id', 'lat', 'lon', 'AmpPGA', 'AmpPGV']].drop_duplicates()
             positions = positions.loc[([shape.lat - radius / 111.195] < positions['lat']) &
                                       (positions['lat'] < [shape.lat + radius / 111.195]) &
@@ -43,7 +46,7 @@ def collect_exposure(shape, radius):
 def collect_site_effects(name, positions):
     fcode = name.split('.')[0]
     name = 'Z-V3-JAPAN-AMP-VS400_M250-' + fcode
-    site_effects = pd.read_csv('site_effects/' + name + '/' + name + '.csv', skiprows=6, skipinitialspace=True)
+    site_effects = pd.read_csv(site_effects_path + name + '/' + name + '.csv', skiprows=6, skipinitialspace=True)
     site_effects.rename(columns={'# CODE': 'qcode'}, inplace=True)
     amp = site_effects.apply(amp_factors, axis=1)
     site_effects = site_effects.merge(amp, left_index=True, right_index=True)
@@ -62,12 +65,12 @@ def assign_prefectures(positions):
 
 
 def prepare_exposure():
-    file_names = os.listdir('Exposure/')
+    file_names = os.listdir(exposure_path + gem_path)
     for name in file_names:
         if not name.endswith('.csv'):
             file_names.remove(name)
     for name in file_names:
-        exposure = pd.read_csv('Exposure/' + name)
+        exposure = pd.read_csv(exposure_path + gem_path + name)
         if not exposure.empty:
             del exposure['ARV'], exposure['pref_id']
             positions = exposure[['grid_id', 'lon', 'lat']].drop_duplicates()
@@ -75,5 +78,5 @@ def prepare_exposure():
             positions = assign_prefectures(positions)
             del positions['lon'], positions['lat']
             exposure = exposure.merge(positions, on='grid_id')
-            exposure.to_csv('Exposure/' + name, index=False)
+            exposure.to_csv(exposure_path + gem_path + name, index=False)
 # prepare_exposure()

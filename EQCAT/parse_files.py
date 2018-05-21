@@ -1,4 +1,5 @@
 import re
+import os
 import pandas as pd
 from EQCAT.earthquake import SegmentEarthquake, MultiSegmentEarthquake, PointsEarthquake, MultiPointsEarthquake,\
     DomainEarthquake, ZoneEarthquake
@@ -48,7 +49,12 @@ def parse_plane_info(line):
 
 
 def parse_eqthr(quakes):
-    fil = open(hazard_inputs_path + 'P-Y2017-PRM_MAX_LND_A98F_EQTHR_EN.csv')
+    file_name = ""
+    for name in os.listdir(hazard_inputs_path):
+        if re.search('P-Y[0-9]{4}-PRM_MAX_LND_A98F_EQTHR_EN.csv', name):
+            file_name = os.path.join(hazard_inputs_path, name)
+            break
+    fil = open(file_name)
     data = fil.readlines()[5:]
     start_lines = detect_blocks(data)
     for i in start_lines:

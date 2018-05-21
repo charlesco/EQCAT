@@ -78,6 +78,10 @@ class PlaneShape(BaseShape):
             self.pnt3 = (x_origin + sin(strike) * length, y_origin + cos(strike) * length, depth + width)
             self.pnt4 = (x_origin, y_origin, depth + width)
         self.depth = depth
+        self.length = length
+        self.width = width
+        self.strike = strike
+        self.dip = dip
         if not self.shape.is_valid:
             print("Warning : Invalid Shape")
 
