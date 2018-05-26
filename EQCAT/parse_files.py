@@ -8,6 +8,26 @@ from EQCAT.magnitude import GutenbergRichter, CharacteristicMag, DiscreteMagnitu
 from EQCAT.occurrence import PoissonProcess, BrownianPTProcess, YearFreqProcess, MultiSegmentProcess
 
 hazard_inputs_path = '../01-Hazard Inputs/'
+results_path = "../08-Results/"
+parsing_reports_path = "01-Parsing Reports/"
+
+
+def select_file_regex(regex):
+    file_name = ''
+    for name in os.listdir(hazard_inputs_path):
+        if re.search(regex, name):
+            file_name = os.path.join(hazard_inputs_path, name)
+            return file_name
+    return file_name
+
+
+def select_all_files_regex(regex):
+    file_list = []
+    for name in os.listdir(hazard_inputs_path):
+        if re.search(regex, name):
+            file_name = os.path.join(hazard_inputs_path, name)
+            file_list += [file_name]
+    return file_list
 
 
 def detect_blocks(data):
@@ -21,7 +41,7 @@ def detect_blocks(data):
 def parse_fault_info(line):
     flt_info = line.split(',')
     eq_code = flt_info[0]
-    # avract = float(flt_info[1])
+    avract = float(flt_info[1])
     min_mag = float(flt_info[2])
     max_mag = float(flt_info[3])
     b_val = float(flt_info[4])
@@ -31,7 +51,8 @@ def parse_fault_info(line):
         mag = GutenbergRichter(min_mag, b_val, max_mag)
     else:
         mag = CharacteristicMag(min_mag)
-    return eq_code, mag, nb_planes, name
+    proc = PoissonProcess(avract)
+    return eq_code, proc, mag, nb_planes, name
 
 
 def parse_plane_info(line):
@@ -48,96 +69,160 @@ def parse_plane_info(line):
     return plane
 
 
-def parse_eqthr(quakes):
-    file_name = ""
-    for name in os.listdir(hazard_inputs_path):
-        if re.search('P-Y[0-9]{4}-PRM_MAX_LND_A98F_EQTHR_EN.csv', name):
-            file_name = os.path.join(hazard_inputs_path, name)
-            break
+def parse_eqthr(quakes=''):
+    if quakes == '':
+        quakes = {}
+    file_name = select_file_regex(r'P-Y[0-9]{4}-PRM_MAX_LND_A98F_EQTHR_EN.csv')
     fil = open(file_name)
     data = fil.readlines()[5:]
     start_lines = detect_blocks(data)
+    print("Parsing major active faults with EQTHR : " + str(len(start_lines)) + ' sources')
+    mag_col_names = ['Code', 'Process', 'Magnitude', 'NbPlanes', 'Name']
+    mag_report = pd.DataFrame(columns=mag_col_names)
+    pln_col_names = ['Code', 'Latitude', 'Longitude', 'Length', 'Width', 'Strike', 'Dip']
+    pln_report = pd.DataFrame(columns=pln_col_names)
     for i in start_lines:
-        eq_code, mag, nb_planes, name = parse_fault_info(data[i])
+        eq_code, proc, mag, nb_planes, name = parse_fault_info(data[i])
+        mag_report.loc[len(mag_report)] = [eq_code, proc.desc(), mag.desc(), nb_planes, name]
         plane_list = []
         for j in range(nb_planes):
             plane = parse_plane_info(data[i + j + 1])
             plane_list += [plane]
+            pln_report.loc[len(pln_report)] = [eq_code, plane.lat, plane.lon, plane.length, plane.width, plane.strike,
+                                               plane.dip]
         shape = MultiPlaneShape(plane_list)
-        quakes[eq_code] = {'code': eq_code, 'mag': mag, 'shape': shape, 'name': name}
+        quakes[eq_code] = {'code': eq_code, 'process': proc, 'mag': mag, 'shape': shape, 'name': name}
     fil.close()
+    mag_report.to_csv(results_path + parsing_reports_path + '01-EQTHR/magnitude_report.csv', sep=',', index=False)
+    pln_report.to_csv(results_path + parsing_reports_path + '01-EQTHR/planes_report.csv', sep=',', index=False)
+    print(' - ' + str(mag_report.count()[0]) + ' magnitudes/process parsed')
+    print(' - ' + str(pln_report.count()[0]) + ' rectangles parsed')
     return quakes
 
 
-def parse_activity(quakes):
-    activity = pd.read_csv(hazard_inputs_path + 'P-Y2017-PRM-ACT_MAX_LND_A98F_EN.csv', skiprows=8,
-                           skipinitialspace=True, index_col=0)
-    activity2 = pd.read_csv(hazard_inputs_path + 'P-Y2017-PRM-ACT_AVR_LND_AGR1_EN.csv', skiprows=8,
-                            skipinitialspace=True, index_col=0)
-    activity = activity.append(activity2)
-    activity2 = pd.read_csv(hazard_inputs_path + 'P-Y2017-PRM-ACT_MAX_PME_MTTL_EN.csv', skiprows=8,
-                            skipinitialspace=True, index_col=0)
-    activity = activity.append(activity2)
+def parse_activity(quakes='', eq_category='all'):
+    if quakes == '':
+        quakes = {}
+    major_path = select_file_regex(r'P-Y[0-9]{4}-PRM-ACT_MAX_LND_A98F_EN.csv')
+    minor_path = select_file_regex(r'P-Y[0-9]{4}-PRM-ACT_AVR_LND_AGR1_EN.csv')
+    subduction_path = select_file_regex(r'P-Y[0-9]{4}-PRM-ACT_MAX_PME_MTTL_EN.csv')
+    if eq_category == 'all':
+        activity = pd.read_csv(major_path, skiprows=8, skipinitialspace=True, index_col=0)
+        activity2 = pd.read_csv(minor_path, skiprows=8, skipinitialspace=True, index_col=0)
+        activity = activity.append(activity2)
+        activity2 = pd.read_csv(subduction_path, skiprows=8, skipinitialspace=True, index_col=0)
+        activity = activity.append(activity2)
+    elif eq_category == 'all active faults':
+        activity = pd.read_csv(major_path, skiprows=8, skipinitialspace=True, index_col=0)
+        activity2 = pd.read_csv(minor_path, skiprows=8, skipinitialspace=True, index_col=0)
+        activity = activity.append(activity2)
+    elif eq_category == 'major active faults':
+        activity = pd.read_csv(major_path, skiprows=8, skipinitialspace=True, index_col=0)
+    elif eq_category == 'minor active faults':
+        activity = pd.read_csv(minor_path, skiprows=8, skipinitialspace=True, index_col=0)
+    elif eq_category == 'subduction':
+        activity = pd.read_csv(subduction_path, skiprows=8, skipinitialspace=True, index_col=0)
+    else:
+        activity = pd.DataFrame()
+    print('Parsing  seismic activity for ' + eq_category + ' : ' + str(activity.count()[0]) + ' sources')
+    activity_report = pd.DataFrame(columns=['Code', 'Process', 'Multi', 'AvrAct', 'LastAct', 'Alpha', 'Desc', 'Name'])
+    nb_new_quakes = 0
+    nb_updated_quakes = 0
     for eq_code, row in activity.iterrows():
         if row['PROC'] in ['POI', 'PSI'] and row['AVRACT'] != '-':
             process = PoissonProcess(row['AVRACT'])
+            activity_report.loc[len(activity_report)] = [eq_code, 'Poisson', row['PROC'], row['AVRACT'], None, None,
+                                                         process.desc(), row['NAME']]
         elif row['PROC'] in ['BPT', 'BSI', 'COM']:
             process = BrownianPTProcess(row['AVRACT'], row['NEWACT'], row['ALPHA'])
+            activity_report.loc[len(activity_report)] = [eq_code, 'BrownianPassageTime', row['PROC'], row['AVRACT'],
+                                                         row['NEWACT'], row['ALPHA'], process.desc(), row['NAME']]
         else:
-            process = ''
+            # print(eq_code)
+            process = 'multi'
+            activity_report.loc[len(activity_report)] = [eq_code, 'Multi', row['PROC'], row['AVRACT'], row['NEWACT'],
+                                                         row['ALPHA'], process, row['NAME']]
         dico = {'process': process}
         if eq_code in quakes:
-            quakes[eq_code].update(dico)
+            if 'process' not in quakes[eq_code]:
+                nb_updated_quakes += 1
+                quakes[eq_code].update(dico)
+            elif quakes[eq_code]['process'].desc()[0] == "P" and process.desc()[0] == "B":
+                nb_updated_quakes += 1
+                quakes[eq_code].update(dico)
         else:
             dico.update({'code': eq_code, 'name': row['NAME']})
             quakes[eq_code] = dico
+            nb_new_quakes += 1
+    activity_report.to_csv(results_path + parsing_reports_path + '02-Seismic Activity Evaluation/' + eq_category +
+                           '/activity_report.csv', sep=',', index=False)
+    print('Nb sources updated : ' + str(nb_updated_quakes))
+    print('Nb new sources : ' + str(nb_new_quakes))
     return quakes
 
 
 def parse_multi(quakes):
     df = pd.read_csv(hazard_inputs_path + 'MultiActivity.csv', index_col=0)
+    print('Parsing sources triggered by simulated occurrences : ' + str(df.count()[0]) + ' sources')
+    nb_updated_quakes = 0
+    nb_unknown = 0
     for code, row in df.iterrows():
-        quakes[code]['segments'] = row['SEGMENTS'].split(';')
-        quakes[code]['process'] = 'multi'
+        if code in quakes:
+            quakes[code]['segments'] = row['SEGMENTS'].split(';')
+            if quakes[code]['process'] == 'multi':
+                quakes[code]['process'] = 'multi'
+                nb_updated_quakes += 1
+            else:
+                print('Unexpected simulated occurrence process : ' + code)
+        else:
+            nb_unknown += 1
+            # print('Unknown source code : ' + code)
+    print('Nb sources updated : ' + str(nb_updated_quakes))
+    print('Nb unknown source codes : ' + str(nb_unknown))
     return quakes
 
 
-def parse_frequencies(quakes):
-    codes1 = ['LND_CGR5_CRUST', 'LND_CIZU_CRUST', 'LND_CJPS_CRUST', 'PSE_CURA_CRUST']
-    codes2 = ['PSE_CPCF_INTER', 'PSE_CPCF_INTRA', 'PSE_CPHL_INTER', 'PSE_CPHL_INTRA']
-    for code in codes1:
-        file_name = hazard_inputs_path + 'P-Y2017-PRM-ACT_' + code + '_CV_SM.csv'
-        df = pd.read_csv(file_name, skiprows=7, skipinitialspace=True)
-        temp = code.split('_')
-        code, typ = temp[1], temp[2]
+def parse_frequencies(quakes=''):
+    if quakes == '':
+        quakes = {}
+
+    types_path = select_file_regex(r'P-Y[0-9]{4}-PRM-ATTENUATION_FORMULA.csv')
+    types_df = pd.read_csv(types_path, skiprows=4, skipinitialspace=True, index_col=0)
+
+    file_list = select_all_files_regex(r'^P-Y[0-9]{4}-PRM-ACT_(PSE|LND)_[A-Z]+[0-9]?_(INTER|INTRA|CRUST)_CV_SM.csv$')
+    print('Parsing frequencies : ' + str(len(file_list)) + " files")
+
+    for path in file_list:
+        activity_report = pd.DataFrame(columns=['Code', 'Zone', 'Type', 'YearFreq', 'MinMag', 'Bval', 'Lat', 'Lon',
+                                                'Dep', 'Desc'])
+        df = pd.read_csv(path, skiprows=7, skipinitialspace=True)
+
+        temp = path.split('_')
+        code, typ = temp[-4], temp[-3]
+        code = code + '_' + typ
+
+        print(code + ' : ' + str(df.count()[0]) + ' zones')
         eqtype = {'CRUST': 1, 'INTER': 2, 'INTRA': 3}[typ]
+        correct = types_df.loc[temp[-5] + "_" + temp[-4]]['CRTYPE']
+
         for _, row in df.iterrows():
             if row['FRQ'] > 0:
                 process = YearFreqProcess(row['FRQ'])
                 mag = GutenbergRichter(row['MMN'], row['BVL'])
                 shape = PointShape(row['# MNO'], row['WLG'], row['WLA'], row['DEP'])  # , row['STR'], row['DIP']
-                code3 = code + '_' + str(int(row['ANO'])) + '_' + str(int(row['# MNO']))
-                quakes[code3] = {'code': code3, 'name': code3, 'process': process, 'mag': mag, 'shape': shape,
-                                 'eqtype': eqtype}
-    for code in codes2:
-        file_name = hazard_inputs_path + 'P-Y2017-PRM-ACT_' + code + '_CV_SM.csv'
-        df = pd.read_csv(file_name, skiprows=7, skipinitialspace=True)
-        temp = code.split('_')
-        code, typ = temp[1] + '_' + temp[2], temp[2]
-        eqtype = {'CRUST': 1, 'INTER': 2, 'INTRA': 3}[typ]
-        for _, row in df.iterrows():
-            if row['FRQ'] > 0:
-                process = YearFreqProcess(row['FRQ'])
-                mag = GutenbergRichter(row['MMN'], row['BVL'])
-                shape = PointShape(row['# MNO'], row['WLG'], row['WLA'], row['DEP'])  # , row['STR'], row['DIP']
-                code3 = code + '_' + str(int(row['ANO'])) + '_' + str(int(row['# MNO']))
-                quakes[code3] = {'code': code3, 'name': code3, 'process': process, 'mag': mag, 'shape': shape,
-                                 'eqtype': eqtype}
+                code2 = code + '_' + str(int(row['ANO'])) + '_' + str(int(row['# MNO']))
+                quakes[code2] = {'code': code2, 'name': code2, 'process': process, 'mag': mag, 'shape': shape,
+                                 'eqtype': eqtype, 'correction': correct}
+                quakes[code2] = ZoneEarthquake(quakes[code2])
+                activity_report.loc[len(activity_report)] = [code2, int(row['ANO']), typ, row['FRQ'], mag.min_mag,
+                                                             row['BVL'], shape.lat, shape.lon, shape.depth, mag.desc()]
+        activity_report.to_csv(results_path + parsing_reports_path + '03-Frequencies/' + code + '.csv', sep=',',
+                               index=False)
     return quakes
 
 
 def parse_types(quakes):
-    file_name = hazard_inputs_path + 'P-Y2017-PRM-ATTENUATION_FORMULA.csv'
+    file_name = select_file_regex(r'P-Y[0-9]{4}-PRM-ATTENUATION_FORMULA.csv')
     df = pd.read_csv(file_name, skiprows=4, skipinitialspace=True, index_col=0)
     df.drop('LND_A98F', inplace=True)
     df.drop('LND_AGR1', inplace=True)
@@ -146,14 +231,7 @@ def parse_types(quakes):
             quakes[code].update({'eqtype': 1, 'correction': 0})
     for code0, row in df.iterrows():
         code = code0.split('_')[-1]
-        if code not in quakes:
-            if code in ['CPCF', 'CPHL']:
-                types = {2: 'INTER', 3: 'INTRA'}
-                code = code + '_' + types[row['EQTYPE']]
-            for c in quakes:
-                if code in c:
-                    quakes[c].update({'eqtype': row['EQTYPE'], 'correction': row['CRTYPE']})
-        else:
+        if code in quakes:
             quakes[code].update({'eqtype': row['EQTYPE'], 'correction': row['CRTYPE']})
             if quakes[code]['process'] == 'multi':
                 for code2 in quakes[code]['segments']:
@@ -171,30 +249,42 @@ def parse_fault_info2(line):
 
 
 def parse_rectangles(quakes):
-    codes = ['LND_A98F', 'LND_AAOMW', 'LND_AGR1', 'LND_AHKDW',  'LND_AHKSW', 'LND_ANIGT', 'LND_AYMGA', 'PLE_ASNKT']
-    for code in codes:
-        fil = open(hazard_inputs_path + 'P-Y2017-PRM-SHP_TYPE1_'+code+'_EN.CSV')
+    file_list = select_all_files_regex(r'P-Y[0-9]{4}-PRM-SHP_TYPE1_(LND|PLE)_A(98)?[A-Z]+1?_EN.csv')
+    print("Parsing rectangles : " + str(len(file_list)) + " files")
+    nb_sources_updated = 0
+    nb_planes_parsed = 0
+    nb_mags_parsed = 0
+    for path in file_list:
+        fil = open(path)
         data = fil.readlines()[5:]
         start_lines = detect_blocks(data)
         for i in start_lines:
             eq_code, mag, nb_planes, name = parse_fault_info2(data[i])
             if eq_code in quakes and 'process' in quakes[eq_code]:
-                plane_list = []
-                for j in range(nb_planes):
-                    plane = parse_plane_info(data[i+j+1])
-                    plane_list += [plane]
-                shape = MultiPlaneShape(plane_list)
                 if 'mag' not in quakes[eq_code]:
                     quakes[eq_code]['mag'] = mag
+                    nb_mags_parsed += 1
                 if 'shape' not in quakes[eq_code]:
+                    plane_list = []
+                    for j in range(nb_planes):
+                        plane = parse_plane_info(data[i+j+1])
+                        plane_list += [plane]
+                    shape = MultiPlaneShape(plane_list)
+                    nb_planes_parsed += nb_planes
                     quakes[eq_code]['shape'] = shape
                 if quakes[eq_code]['process'] == 'multi':
+                    quakes[eq_code]['segments'] = [quakes[i] for i in quakes[eq_code]['segments']]
+                    quakes[eq_code]['proc'] = MultiSegmentProcess(quakes[eq_code]['segments'])
                     quakes[eq_code] = MultiSegmentEarthquake(quakes[eq_code])
                 else:
                     quakes[eq_code] = SegmentEarthquake(quakes[eq_code])
+                nb_sources_updated += 1
             elif eq_code in quakes:
                 quakes.pop(eq_code)
         fil.close()
+    print(" - Nb planes parsed : " + str(nb_planes_parsed))
+    print(" - Nb mags parsed : " + str(nb_mags_parsed))
+    print(" - Nb sources updated : " + str(nb_sources_updated))
     return quakes
 
 
@@ -219,9 +309,13 @@ def parse_point_info(line):
 
 
 def parse_points(quakes):
-    codes = ['PLE_AETRF', 'PLE_ANNKI', 'PLE_ASGMI', 'PLE_ASKTN', 'PLE_ATHOP', 'PLE_ATKNM']
-    for code in codes:
-        fil = open(hazard_inputs_path + 'P-Y2017-PRM-SHP_TYPE2_' + code + '_EN.csv')
+    file_list = select_all_files_regex(r'P-Y[0-9]{4}-PRM-SHP_TYPE2_PLE_A[A-Z]+_EN.csv')
+    print("Parsing points : " + str(len(file_list)) + " files")
+    nb_sources_updated = 0
+    nb_mags_updated = 0
+    nb_points_updated = 0
+    for path in file_list:
+        fil = open(path)
         data = fil.readlines()
         eq_code = data[4].split(',')[0].split('_')[-1]
         data = data[5:]
@@ -229,10 +323,12 @@ def parse_points(quakes):
         faults = {}
         for i in start_lines:
             flt_code, mag, depth, nb_points, name = parse_fault_info3(data[i])
+            nb_mags_updated += 1
             pnt_list = []
             for j in range(nb_points):
                 point = parse_point_info(data[i + j + 1])
                 pnt_list += [point]
+                nb_points_updated += 1
             shape = MultiPointShape(pnt_list, depth)
             dico = {'code': flt_code, 'name': name, 'mag': mag, 'shape': shape}
             if flt_code not in quakes:
@@ -243,10 +339,15 @@ def parse_points(quakes):
             else:
                 dico.update(quakes[flt_code])
                 quakes[flt_code] = PointsEarthquake(dico)
+                nb_sources_updated += 1
         if faults != {}:
             quakes[eq_code].update({'earthquakes': faults})
             quakes[eq_code] = MultiPointsEarthquake(quakes[eq_code])
+            nb_sources_updated += 1
         fil.close()
+    print(" - Nb points parsed : " + str(nb_points_updated))
+    print(" - Nb mags parsed : " + str(nb_mags_updated))
+    print(" - Nb sources updated : " + str(nb_sources_updated))
     return quakes
 
 
@@ -294,13 +395,16 @@ def parse_plane_info2(line, leng, wid):
 
 
 def parse_domains(quakes):
-    domains = ['PSE_BNRML', 'PSE_BTNMI', 'LND_BAKIT', 'PSE_BYNGN', 'LND_BHKNW', 'LND_BSDGN', 'PSE_BHGNL',
-                            'PSE_BHGNS']
-    for name in domains:
-        file_name = hazard_inputs_path + 'P-Y2017-PRM-SHP_TYPE3_' + name + '.csv'
-        fil = open(file_name, 'r')
+    file_list = select_all_files_regex(r'P-Y[0-9]{4}-PRM-SHP_TYPE3_(PSE|LND)_B[A-Z]+.csv')
+    print("Parsing discrete rectangles : " + str(len(file_list)) + " files")
+    nb_mag_pars = 0
+    nb_sources_up = 0
+    nb_planes_up = 0
+    for path in file_list:
+        fil = open(path, 'r')
         data = fil.readlines()[4:]
         eq_code, nb_dom, nb_mag, nb_occ = parse_fault_info4(data[0])
+        nb_mag_pars += 1
         data = data[1:]
         mag = parse_discrete_mag(data[:nb_mag])
         data = data[nb_mag:]
@@ -312,12 +416,17 @@ def parse_domains(quakes):
             for j in range(nb_planes):
                 plane = parse_plane_info2(data[j], leng, wid)
                 pln_list += [plane]
+                nb_planes_up += 1
             shape = MultiPlaneShape(pln_list)
             dom_dict[dom_id] = shape
             data = data[nb_planes:]
         quakes[eq_code].update({'mag': mag, 'shape': dom_dict})
         quakes[eq_code] = DomainEarthquake(quakes[eq_code])
+        nb_sources_up += 1
         fil.close()
+    print(" - Nb planes parsed : " + str(nb_planes_up))
+    print(" - Nb mags parsed : " + str(nb_mag_pars))
+    print(" - Nb sources updated : " + str(nb_sources_up))
     return quakes
 
 
@@ -387,7 +496,7 @@ def parse_areas(quakes):
     for code in codes:
         for i in range(codes[code]):
             zone_id = str(i + 1)
-            if i < 10:
+            if i - 1 < 10:
                 zone_id = '0' + zone_id
             eq_code = code.split('_')[1]
             for c in quakes:
@@ -397,23 +506,33 @@ def parse_areas(quakes):
     return quakes
 
 
-def parse_quakes():
-    quakes = {}
-    quakes = parse_eqthr(quakes)
-    quakes = parse_activity(quakes)
-    quakes = parse_multi(quakes)
-    quakes = parse_frequencies(quakes)
-    quakes = parse_types(quakes)
-    quakes = parse_rectangles(quakes)
-    quakes = parse_points(quakes)
-    quakes = parse_domains(quakes)
-    quakes = parse_discrete_rectangles(quakes)
-    quakes = parse_areas(quakes)
-    for q in quakes:
-        if isinstance(quakes[q], dict):
-            quakes[q] = ZoneEarthquake(quakes[q])
-        elif quakes[q].proc == 'multi':
-            quakes[q].segments = [quakes[i] for i in quakes[q].segments]
-            quakes[q].proc = MultiSegmentProcess(quakes[q].segments)
-    print('Total quakes : ', len(list(quakes)))
-    return quakes
+def parse_quakes(category='all'):
+    q = ''
+    if category in ['all', 'all active faults', 'major active faults']:
+        q = parse_eqthr(q)
+    if category in ['all', 'all active faults', 'major active faults', 'minor active faults', 'subduction']:
+        q = parse_activity(q, category)
+    q = parse_multi(q)
+    if category in ['all', 'zones']:
+        q = parse_frequencies(q)
+    q = parse_types(q)
+    if category in ['all', 'all active faults', 'major active faults', 'minor active faults', 'subduction']:
+        q = parse_rectangles(q)
+    if category in ['all', 'subduction']:
+        q = parse_points(q)
+        q = parse_domains(q)
+
+    for quake in q:
+        if isinstance(q[quake], dict):
+            print(quake)
+    return q
+
+
+yesy = parse_quakes('major active faults')
+
+output = pd.DataFrame(columns=['Code', 'Process', 'Multi', 'AvrAct', 'LastAct', 'Alpha', 'Desc', 'Name'])
+for cp in yesy:
+    seisme = yesy[cp]
+
+
+

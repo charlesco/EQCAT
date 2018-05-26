@@ -1,13 +1,15 @@
 from __future__ import division
+from functools import partial
 import pandas as pd
 import os
-from geography import fmesh_distance, quarter_meshcode, prefecture
+from geography import fmesh_distance, quarter_meshcode, prefecture, load_prefs
 from attenuation import amp_factors
 
 nb_sites_max = 50000
 exposure_path = '../04-Exposure/'
 gem_path = 'GEM/'
 site_effects_path = '../02-Site Effects/'
+
 
 def collect_exposure(shape, radius):
     file_names = os.listdir(exposure_path + gem_path)
@@ -18,10 +20,10 @@ def collect_exposure(shape, radius):
         if fmesh_distance(fcode, shape, radius):
             exposure = pd.read_csv(exposure_path + gem_path + name)
             positions = exposure[['grid_id', 'lat', 'lon', 'AmpPGA', 'AmpPGV']].drop_duplicates()
-            positions = positions.loc[([shape.lat - radius / 111.195] < positions['lat']) &
-                                      (positions['lat'] < [shape.lat + radius / 111.195]) &
-                                      ([shape.lon - radius / 65.265] < positions['lon']) &
-                                      (positions['lon'] < [shape.lon + radius / 65.265])]
+            positions = positions.loc[([shape.lat - radius / shape.lat_km] < positions['lat']) &
+                                      (positions['lat'] < [shape.lat + radius / shape.lat_km]) &
+                                      ([shape.lon - radius / shape.lon_km] < positions['lon']) &
+                                      (positions['lon'] < [shape.lon + radius / shape.lon_km])]
             if not positions.empty:
                 dists = positions.apply(shape.distance2, axis=1)
                 positions = positions.merge(dists, left_index=True, right_index=True)
@@ -32,7 +34,7 @@ def collect_exposure(shape, radius):
                     buildings = buildings.append(exposure)
                     # break
                     # if sites.shape[0] > nb_sites_max:
-                        # break
+                    # break
     if not sites.empty:
         to_del_cols = ['bldg_area', 'AmpPGV', 'AmpPGA']
         for col in to_del_cols:
@@ -41,6 +43,7 @@ def collect_exposure(shape, radius):
             sites.sort_values(by='distance', inplace=True)
             sites = sites.iloc[0:nb_sites_max]
     return buildings, sites
+
 
 # Preparation of exposure
 def collect_site_effects(name, positions):
@@ -58,7 +61,8 @@ def collect_site_effects(name, positions):
 
 
 def assign_prefectures(positions):
-    prefs = positions.apply(prefecture, axis=1)
+    prefecture2 = partial(prefecture, pref_df=load_prefs())
+    prefs = positions.apply(prefecture2, axis=1)
     positions = positions.merge(prefs, left_index=True, right_index=True)
     print('Prefectures : OK')
     return positions

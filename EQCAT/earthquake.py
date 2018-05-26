@@ -5,6 +5,10 @@ from EQCAT.sites import collect_exposure
 from EQCAT.attenuation import ground_motion, felt_distance
 from EQCAT.vulnerability import consequences
 
+results_path = "../08-Results/"
+events_reports_path = "02-Events Reports/"
+simulation_reports_path = "03-Simulation Reports/"
+
 
 class Earthquake(object):
     def __init__(self, code, name, eqtype, crtype):
@@ -29,7 +33,6 @@ class SegmentEarthquake(Earthquake):
                              'Proba': [proba * mag_probs[i][1] for i in range(len(mag_probs))],
                              'Shape': [self.shape.desc() for i in range(len(mag_probs))]})
 
-
     def sesm(self, time_lapse, min_pga=0.039):
         mag_probs = self.mag.mag_probs()
         max_mag = mag_probs[-1][0]
@@ -49,7 +52,8 @@ class SegmentEarthquake(Earthquake):
             if not summary.empty:
                 summary['Code'] = self.code
                 summary['Proba'] = summary['Proba'] * proba
-            summary.to_csv('Results/Instrumental/' + self.code + '/summary.csv', index=False)
+            summary.to_csv(results_path + simulation_reports_path + '/Instrumental/' + self.code + '/summary.csv',
+                           index=False)
         return summary
 
 
@@ -90,7 +94,8 @@ class MultiSegmentEarthquake(Earthquake):
             if not summary.empty:
                 summary['Code'] = self.code
                 summary['Proba'] = summary['Proba'] * proba
-            summary.to_csv('Results/Instrumental/' + self.code + '/summary.csv', index=False)
+            summary.to_csv(results_path + simulation_reports_path + '/Instrumental/' + self.code + '/summary.csv',
+                           index=False)
         return summary
 
 
@@ -130,7 +135,8 @@ class PointsEarthquake(Earthquake):
             if not summary.empty:
                 summary['Code'] = self.code
                 summary['Proba'] = summary['Proba'] * proba
-            summary.to_csv('Results/Instrumental/' + self.code + '/summary.csv', index=False)
+            summary.to_csv(results_path + simulation_reports_path + '/Instrumental/' + self.code + '/summary.csv',
+                           index=False)
         return summary
 
 
@@ -146,11 +152,10 @@ class MultiPointsEarthquake(Earthquake):
         out = []
         for quake in self.quakes.values():
             out += [quake.events(time_lapse, mag_step)]
-        out =  pd.concat(out)
+        out = pd.concat(out)
         out['Code'] = self.code + '_' + out['Code']
         out['Proba'] = self.proc.occ_proba(time_lapse) / len(self.quakes)
         return out
-
 
     def sesm(self, time_lapse, min_pga=0.039):
         summary = pd.DataFrame()
@@ -163,10 +168,10 @@ class MultiPointsEarthquake(Earthquake):
             summary = summary.append(out)
         if not summary.empty:
             summary['Proba'] = proba / len(self.quakes)
-            dir_name = 'Results/Instrumental/' + self.code
+            dir_name = results_path + simulation_reports_path + '/Instrumental/' + self.code
             if not os.path.isdir(dir_name):
                 os.makedirs(dir_name)
-            summary.to_csv('Results/Instrumental/' + self.code + '/summary.csv', index=False)
+            summary.to_csv(dir_name + '/summary.csv', index=False)
         return summary
 
 
@@ -204,7 +209,8 @@ class DomainEarthquake(Earthquake):
                 summary = summary.append(summary2)
         if not summary.empty:
             summary['Proba'] = summary['Proba'] * proba
-            summary.to_csv('Results/Instrumental/' + self.code + '/summary.csv', index=False)
+            summary.to_csv(results_path + simulation_reports_path + '/Instrumental/' + self.code + '/summary.csv',
+                           index=False)
         return summary
 
 
@@ -233,7 +239,8 @@ class ZoneEarthquake(Earthquake):
             if not summary.empty:
                 summary['Code'] = self.code
                 summary['Proba'] = summary['Proba'] * proba
-                summary.to_csv('Results/Instrumental/' + self.code + '/summary.csv', index=False)
+                summary.to_csv(results_path + simulation_reports_path + '/Instrumental/' + self.code + '/summary.csv',
+                               index=False)
         return summary
 
 
@@ -260,5 +267,6 @@ class HypoEarthquake(object):
                 summary = summary.append(df)
             if not summary.empty:
                 summary['Code'] = self.code
-            summary.to_csv('Results/Instrumental/' + self.code + '/summary.csv', index=False)
+            summary.to_csv(results_path + simulation_reports_path + '/Instrumental/' + self.code + '/summary.csv',
+                           index=False)
         return summary

@@ -1,0 +1,23 @@
+Code,Process,Multi,AvrAct,LastAct,Alpha,Desc,Name
+ANNKI,BrownianPassageTime,BPT,88.2,71,0.22,"BPT(mu=88.2,t0=71.0,alph=0.22)",Nankai Trough earthquakes
+ATHOP,BrownianPassageTime,BPT,600,5.8,0.24,"BPT(mu=600.0,t0=5.8,alph=0.24)",Great East Japan Earthquake (2011 type)
+ASNKT,BrownianPassageTime,BPT,97,48.6,0.18,"BPT(mu=97.0,t0=48.6,alph=0.18)",Large interplate earthquakes in Northern Sanriku-Oki (Repeating earthquakes)
+BTNMI,Poisson,POI,103,,,P(lmbd=103.0),Large interplate earthquakes close to the offshore trenches in the Sanriku-Oki to Boso-Oki regions (Tsunami earthquakes)
+BNRML,Poisson,POI,575,,,P(lmbd=575.0),Large intraplate earthquakes close to the offshore trenches in the Sanriku-Oki to Boso-Oki regions (normal faults type)
+ATKCH,BrownianPassageTime,BPT,72.2,13.3,0.28,"BPT(mu=72.2,t0=13.3,alph=0.28)",Tokachi-Oki Earthquake
+ANMRO,BrownianPassageTime,BPT,72.2,43.5,0.28,"BPT(mu=72.2,t0=43.5,alph=0.28)",Nemuro-Oki Earthquake
+ASKTN,BrownianPassageTime,BPT,72.2,47.4,0.28,"BPT(mu=72.2,t0=47.4,alph=0.28)",Shikotanto-Oki Earthquake
+AETRF,BrownianPassageTime,BPT,72.2,53.2,0.28,"BPT(mu=72.2,t0=53.2,alph=0.28)",Etorofuto-Oki Earthquake
+BHKNW,BrownianPassageTime,COM,3900,2100,0.21,"BPT(mu=3900.0,t0=2100.0,alph=0.21)",Hokkaido-hokusei-Oki Earthquake
+AHKDW,BrownianPassageTime,COM,2650,76.4,0.21,"BPT(mu=2650.0,t0=76.4,alph=0.21)",Hokkaido-seiho-Oki Earthquake
+AHKSW,BrownianPassageTime,COM,950,23.5,0.21,"BPT(mu=950.0,t0=23.5,alph=0.21)",Hokkaido-nansei-Oki Earthquake
+AAOMW,BrownianPassageTime,COM,950,33.6,0.21,"BPT(mu=950.0,t0=33.6,alph=0.21)",Aomori-ken-seiho-Oki Earthquake
+BAKIT,Poisson,POI,1000,,,P(lmbd=1000.0),Akita-ken-Oki Earthquake
+AYMGA,BrownianPassageTime,COM,1000,183.1,0.21,"BPT(mu=1000.0,t0=183.1,alph=0.21)",Yamagata-ken-Oki Earthquake
+ANIGT,BrownianPassageTime,COM,1000,52.5,0.21,"BPT(mu=1000.0,t0=52.5,alph=0.21)",Niigata-ken-hokubu-Oki Earthquake
+BSDGN,Poisson,POI,750,,,P(lmbd=750.0),Sadogashima-hoppo-Oki Earthquake
+BHGNL,Poisson,POI,200,,,P(lmbd=200.0),Interplate earthquakes in Hyuganada
+BHGNS,Poisson,POI,23,,,P(lmbd=23.0),Relatively small interplate earthquakes in Hyuganada
+BYNGN,Poisson,POI,100,,,P(lmbd=100.0),Earthquakes in the vicinity of Yonaguni-jima
+ASGMI,BrownianPassageTime,BPT,302.7,94,0.38,"BPT(mu=302.7,t0=94.0,alph=0.38)",Sagami Trough earthquakes (M8 class)
+ATNI1,Multi,SIM,-,-,0.0,multi,Tokachi-Oki Earthquake + Nemuro-Oki Earthquake
