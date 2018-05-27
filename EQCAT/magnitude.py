@@ -13,7 +13,8 @@ def magnitude_conversion(mag):
 
 class GutenbergRichter(object):
     def __init__(self, min_mag, b_val, max_mag=8):
-        self.beta = b_val * log(10)
+        self.b_val = b_val
+        self.beta = self.b_val * log(10)
         self.min_mag = magnitude_conversion(min_mag)
         self.a1 = exp(-self.beta * self.min_mag)
         self.max_mag = magnitude_conversion(max_mag)

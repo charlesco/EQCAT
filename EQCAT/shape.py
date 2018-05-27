@@ -1,4 +1,4 @@
-from shapely.geometry import LineString, Point, Polygon, MultiPoint
+from shapely.geometry import Point, Polygon, MultiPoint, MultiPolygon
 import pandas as pd
 from math import cos, sin, pi, sqrt
 from mpl_toolkits.mplot3d import Axes3D
@@ -61,44 +61,35 @@ class PlaneShape(BaseShape):
         self.length = float(length)
         self.width = float(width)
         self.strike = float(strike) * 2 * pi / 360
+        if float(dip) == 90.0:
+            dip = 89.0
         self.dip = float(dip) * 2 * pi / 360
-        self.pnt1_coord = (self.lat, self.lon)
+        self.pnt1_coord = (self.lon, self.lat)
         self.pnt1_xyz = (0, 0, self.depth)
         self.pnt2_xyz = (sin(self.strike) * self.length, cos(self.strike) * self.length, self.depth)
-        self.pnt2_coord = (self.lat + self.pnt2_xyz[1] / self.lat_km,
-                           self.lon + self.pnt2_xyz[0] / self.lon_km)
-        if dip != 90.0:
-            self.pnt3_xyz = (self.pnt2_xyz[0] + cos(self.strike) * cos(self.dip) * self.width,
-                             self.pnt2_xyz[1] - sin(self.strike) * cos(self.dip) * self.width,
-                             sin(self.dip) * self.width)
-            self.pnt3_coord = (self.lat + self.pnt3_xyz[1] / self.lat_km,
-                               self.lon + self.pnt3_xyz[0] / self.lon_km)
-            self.pnt4_xyz = (cos(self.strike) * cos(self.dip) * self.width,
-                             -sin(self.strike) * cos(self.dip) * self.width,
-                             sin(self.dip) * self.width)
-            self.pnt4_coord = (self.lat + self.pnt4_xyz[1] / self.lat_km,
-                               self.lon + self.pnt4_xyz[0] / self.lon_km)
-            self.shape = Polygon([(xyz[0], xyz[1]) for xyz in [self.pnt1_xyz, self.pnt2_xyz, self.pnt3_xyz,
-                                                               self.pnt4_xyz, self.pnt1_xyz]])
-            self.shape_coord = Polygon([self.pnt1_coord, self.pnt2_coord, self.pnt3_coord, self.pnt4_coord,
-                                        self.pnt1_coord])
-        else:
-            self.pnt3_xyz = (self.pnt2_xyz[0], self.pnt2_xyz[1], self.pnt2_xyz[2] + self.width)
-            self.pnt3_coord = self.pnt2_coord
-            self.pnt4_xyz = (self.pnt1_xyz[0], self.pnt1_xyz[1], self.pnt1_xyz[2] + self.width)
-            self.pnt4_coord = self.pnt1_coord
-            self.shape = LineString([(xyz[0], xyz[1]) for xyz in [self.pnt1_xyz, self.pnt2_xyz]])
-            self.shape_coord = LineString([self.pnt1_coord, self.pnt2_coord])
-        if not self.shape.is_valid or not self.shape_coord.is_valid:
+        self.pnt2_coord = (self.lon + self.pnt2_xyz[0] / self.lon_km,
+                           self.lat + self.pnt2_xyz[1] / self.lat_km)
+        self.pnt3_xyz = (self.pnt2_xyz[0] + cos(self.strike) * cos(self.dip) * self.width,
+                         self.pnt2_xyz[1] - sin(self.strike) * cos(self.dip) * self.width,
+                            sin(self.dip) * self.width)
+        self.pnt3_coord = (self.lon + self.pnt3_xyz[0] / self.lon_km, self.lat + self.pnt3_xyz[1] / self.lat_km)
+        self.pnt4_xyz = (cos(self.strike) * cos(self.dip) * self.width, -sin(self.strike) * cos(self.dip) * self.width,
+                         sin(self.dip) * self.width)
+        self.pnt4_coord = (self.lon + self.pnt4_xyz[0] / self.lon_km, self.lat + self.pnt4_xyz[1] / self.lat_km)
+        self.shape = Polygon([(xyz[0], xyz[1]) for xyz in [self.pnt1_xyz, self.pnt2_xyz, self.pnt3_xyz, self.pnt4_xyz,
+                                                           self.pnt1_xyz]])
+        self.shape_coord = Polygon([self.pnt1_coord, self.pnt2_coord, self.pnt3_coord, self.pnt4_coord,
+                                    self.pnt1_coord])
+        if not self.shape_coord.is_valid:
             print("Warning : Invalid Shape")
             print(self.desc())
 
     def desc(self):
-        out = "PLN((lat=" + str(round(self.pnt1_coord[0], 2)) + ",lon=" + str(round(self.pnt1_coord[1], 2)) +\
-              ",dep=" + str(round(self.pnt1_xyz[2])) + "),(lat=" + str(round(self.pnt2_coord[0], 2)) + ",lon=" +\
-              str(round(self.pnt2_coord[1], 2)) + ",dep=" + str(round(self.pnt2_xyz[2])) + "),(lat=" +\
-              str(round(self.pnt3_coord[0], 2)) + ",lon=" + str(round(self.pnt3_coord[1], 2)) + ",dep=" +\
-              str(round(self.pnt3_xyz[2])) + "),(lat=" + str(round(self.pnt4_coord[0], 2)) + ",lon=" +\
+        out = "PLN((lon=" + str(round(self.pnt1_coord[0], 2)) + ",lat=" + str(round(self.pnt1_coord[1], 2)) +\
+              ",dep=" + str(round(self.pnt1_xyz[2])) + "),(lon=" + str(round(self.pnt2_coord[0], 2)) + ",lat=" +\
+              str(round(self.pnt2_coord[1], 2)) + ",dep=" + str(round(self.pnt2_xyz[2])) + "),(lon=" +\
+              str(round(self.pnt3_coord[0], 2)) + ",lat=" + str(round(self.pnt3_coord[1], 2)) + ",dep=" +\
+              str(round(self.pnt3_xyz[2])) + "),(lon=" + str(round(self.pnt4_coord[0], 2)) + ",lat=" +\
               str(round(self.pnt4_coord[1], 2)) + ",dep=" + str(round(self.pnt4_xyz[2])) + "))"
         return out
 
@@ -126,14 +117,15 @@ class PointShape(BaseShape):
         super(self.__class__, self).__init__(lat, lon)
         self.id = idx
         self.depth = depth
-        self.pnt_coord = (lat, lon)
+        self.pnt_coord = (lon, lat)
         self.pnt_xyz = (0, 0, self.depth)
         self.shape = Point(0, 0)
-        if not self.shape.is_valid:
+        self.shape_coord = Point(lon, lat)
+        if not self.shape.is_valid or not self.shape_coord.is_valid:
             print("Warning")
 
     def desc(self):
-        return "PNT(lat=" + str(round(self.pnt_coord[0], 2)) + ",lon=" + str(round(self.pnt_coord[1], 2)) + ",d=" +\
+        return "PNT(lon=" + str(round(self.pnt_coord[0], 2)) + ",lat=" + str(round(self.pnt_coord[1], 2)) + ",d=" +\
                str(round(self.pnt_xyz[2])) + ")"
 
     def plot3d(self):
@@ -144,14 +136,19 @@ class PointShape(BaseShape):
 
 
 class MultiPointShape(BaseShape):
-    def __init__(self, pnt_list, depth):
+    def __init__(self, pnt_list):
         center = MultiPoint([(p.lon, p.lat) for p in pnt_list]).centroid
         lon, lat = center.x, center.y
         super(self.__class__, self).__init__(lat, lon)
+        for i in range(len(pnt_list)):
+            pnt_list[i].pnt_xyz = ((pnt_list[i].lon - self.lon) * self.lon_km,
+                                   (pnt_list[i].lat - self.lat) * self.lat_km, pnt_list[i].depth)
+            pnt_list[i].shape = Point((pnt_list[i].pnt_xyz[0], pnt_list[i].pnt_xyz[1]))
         self.shape = MultiPoint([p.shape for p in pnt_list])
+        self.shape_coord = MultiPoint([p.shape_coord for p in pnt_list]).convex_hull
         if not self.shape.is_valid:
             print("Warning")
-        self.depth = depth
+        self.depth = min([pnt.depth for pnt in pnt_list])
         self.pnt_list = pnt_list
 
     def desc(self):
@@ -179,7 +176,22 @@ class MultiPlaneShape(MultiBaseShape):
         center = MultiPoint([(p.lon, p.lat) for p in pln_list]).centroid
         lon, lat = center.x, center.y
         super(self.__class__, self).__init__(lat, lon)
+        for i in range(len(pln_list)):
+            pln_list[i].pnt1_xyz = ((pln_list[i].lon - self.lon) * self.lon_km,
+                                    (pln_list[i].lat - self.lat) * self.lat_km, pln_list[i].depth)
+            pln_list[i].pnt2_xyz = (pln_list[i].pnt2_xyz[0] + pln_list[i].pnt1_xyz[0],
+                                    pln_list[i].pnt2_xyz[1] + pln_list[i].pnt1_xyz[1], pln_list[i].pnt2_xyz[2])
+            pln_list[i].pnt3_xyz = (pln_list[i].pnt3_xyz[0] + pln_list[i].pnt1_xyz[0],
+                                    pln_list[i].pnt3_xyz[1] + pln_list[i].pnt1_xyz[1], pln_list[i].pnt3_xyz[2])
+            pln_list[i].pnt4_xyz = (pln_list[i].pnt4_xyz[0] + pln_list[i].pnt1_xyz[0],
+                                    pln_list[i].pnt4_xyz[1] + pln_list[i].pnt1_xyz[1], pln_list[i].pnt4_xyz[2])
+            pln_list[i].shape = Polygon([(xyz[0], xyz[1]) for xyz in [pln_list[i].pnt1_xyz, pln_list[i].pnt2_xyz,
+                                                               pln_list[i].pnt3_xyz, pln_list[i].pnt4_xyz,
+                                                               pln_list[i].pnt1_xyz]])
+        self.shape = MultiPolygon([p.shape for p in pln_list])
+        self.shape_coord = MultiPolygon([p.shape_coord for p in pln_list])
         self.shape_list = pln_list
+        self.shape_coord = MultiPolygon([plane.shape_coord for plane in self.shape_list])
         self.depth = min([pln.depth for pln in self.shape_list])
 
     def desc(self):

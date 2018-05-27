@@ -145,8 +145,9 @@ class MultiPointsEarthquake(Earthquake):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
         self.quakes = dico['earthquakes']
         self.proc = dico['process']
-        self.mag = None
-        self.shape = None
+        self.mag = dico['mag']
+        self.shape = dico['shape']
+        self
 
     def events(self, time_lapse, mag_step):
         out = []
@@ -179,9 +180,9 @@ class DomainEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
         self.mag = dico['mag']
-        self.dom_dict = dico['shape']
+        self.dom_dict = dico['domains']
         self.proc = dico['process']
-        self.shape = None
+        self.shape = dico['shape']
         self.curr_mag = None
 
     def sesm(self, time_lapse, min_pga=0.039):
@@ -217,6 +218,9 @@ class DomainEarthquake(Earthquake):
 class ZoneEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
+        self.code1 = dico['code1']
+        self.zone = dico['zone']
+        self.mesh_id = dico['mesh_id']
         self.proc = dico['process']
         self.mag = dico['mag']
         self.shape = dico['shape']

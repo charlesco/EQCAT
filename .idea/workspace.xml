@@ -2,24 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="157ba104-8877-45e3-ad36-a40751c3ef08" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/01-EQTHR/magnitude_report.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/01-EQTHR/planes_report.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/02-Seismic Activity Evaluation/all active faults/activity_report.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/02-Seismic Activity Evaluation/all/activity_report.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/02-Seismic Activity Evaluation/major active faults/activity_report.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/02-Seismic Activity Evaluation/minor active faults/activity_report.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/02-Seismic Activity Evaluation/subduction/activity_report.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CGR5_CRUST.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CIZU_CRUST.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CJPS_CRUST.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CPCF_INTER.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CPCF_INTRA.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CPHL_INTER.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CPHL_INTRA.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CURA_CRUST.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/03-Frequencies/CYNG_INTER.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/EQCAT/occurrence.py" afterPath="$PROJECT_DIR$/EQCAT/occurrence.py" />
+      <change beforePath="$PROJECT_DIR$/08-Results/01-Parsing Reports/01-Active Faults/active_faults_report.csv" afterPath="$PROJECT_DIR$/08-Results/01-Parsing Reports/01-Active Faults/active_faults_report.csv" />
+      <change beforePath="$PROJECT_DIR$/09-QGIS/plugin/startup.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/09-QGIS/project.qgs" afterPath="$PROJECT_DIR$/09-QGIS/project.qgs" />
+      <change beforePath="$PROJECT_DIR$/EQCAT/earthquake.py" afterPath="$PROJECT_DIR$/EQCAT/earthquake.py" />
+      <change beforePath="$PROJECT_DIR$/EQCAT/magnitude.py" afterPath="$PROJECT_DIR$/EQCAT/magnitude.py" />
       <change beforePath="$PROJECT_DIR$/EQCAT/parse_files.py" afterPath="$PROJECT_DIR$/EQCAT/parse_files.py" />
       <change beforePath="$PROJECT_DIR$/EQCAT/shape.py" afterPath="$PROJECT_DIR$/EQCAT/shape.py" />
     </list>
@@ -35,11 +22,21 @@
       <file leaf-file-name="earthquake.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EQCAT/earthquake.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
+            <state relative-caret-position="136">
+              <caret line="222" column="36" lean-forward="false" selection-start-line="222" selection-start-column="36" selection-end-line="222" selection-end-column="36" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="magnitude.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EQCAT/magnitude.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,8 +56,8 @@
       <file leaf-file-name="parse_files.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/EQCAT/parse_files.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="541" column="102" lean-forward="true" selection-start-line="541" selection-start-column="102" selection-end-line="541" selection-end-column="102" />
+            <state relative-caret-position="174">
+              <caret line="104" column="28" lean-forward="true" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -71,8 +68,8 @@
       <file leaf-file-name="occurrence.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EQCAT/occurrence.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="70" column="19" lean-forward="true" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
+            <state relative-caret-position="-391">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,10 +90,10 @@
       <file leaf-file-name="shape.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EQCAT/shape.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-124">
-              <caret line="77" column="48" lean-forward="true" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
+            <state relative-caret-position="318">
+              <caret line="151" column="32" lean-forward="false" selection-start-line="151" selection-start-column="32" selection-end-line="151" selection-end-column="32" />
               <folding>
-                <element signature="e#0#67#0" expanded="true" />
+                <element signature="e#0#69#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,14 +121,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/EQCAT/magnitude.py" />
         <option value="$PROJECT_DIR$/Notebooks/events.ipynb" />
         <option value="$PROJECT_DIR$/Notebooks/events2.ipynb" />
         <option value="$PROJECT_DIR$/EQCAT/master.py" />
         <option value="$PROJECT_DIR$/EQCAT/tset.py" />
         <option value="$PROJECT_DIR$/EQCAT/vulnerability.py" />
         <option value="$PROJECT_DIR$/07-Notebooks/parsing_description.ipynb" />
-        <option value="$PROJECT_DIR$/EQCAT/earthquake.py" />
         <option value="$PROJECT_DIR$/EQCAT/geography2.py" />
         <option value="$PROJECT_DIR$/EQCAT/shape2.py" />
         <option value="$PROJECT_DIR$/EQCAT/sites.py" />
@@ -139,6 +134,8 @@
         <option value="$PROJECT_DIR$/EQCAT/geography.py" />
         <option value="$PROJECT_DIR$/EQCAT/occurrence.py" />
         <option value="$PROJECT_DIR$/EQCAT/shape.py" />
+        <option value="$PROJECT_DIR$/EQCAT/earthquake.py" />
+        <option value="$PROJECT_DIR$/EQCAT/magnitude.py" />
         <option value="$PROJECT_DIR$/EQCAT/parse_files.py" />
       </list>
     </option>
@@ -168,7 +165,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,6 +186,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,13 +333,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24925596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767403" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28692698" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28692698" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.49707174" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -420,7 +417,7 @@
         <state relative-caret-position="1785">
           <caret line="108" column="19" lean-forward="false" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
           <folding>
-            <element signature="e#0#67#0" expanded="true" />
+            <element signature="e#0#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -491,7 +488,7 @@
         <state relative-caret-position="1785">
           <caret line="108" column="19" lean-forward="false" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
           <folding>
-            <element signature="e#0#67#0" expanded="true" />
+            <element signature="e#0#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -569,7 +566,7 @@
         <state relative-caret-position="1785">
           <caret line="108" column="19" lean-forward="false" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
           <folding>
-            <element signature="e#0#67#0" expanded="true" />
+            <element signature="e#0#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -641,7 +638,7 @@
         <state relative-caret-position="1581">
           <caret line="96" column="19" lean-forward="true" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
           <folding>
-            <element signature="e#0#67#0" expanded="true" />
+            <element signature="e#0#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -683,29 +680,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EQCAT/magnitude.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="78" column="14" lean-forward="false" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/EQCAT/shape2.py" />
     <entry file="file://$PROJECT_DIR$/EQCAT/geography2.py" />
     <entry file="file://$PROJECT_DIR$/EQCAT/attenuation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-221">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EQCAT/sites.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -720,18 +700,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EQCAT/occurrence.py">
+    <entry file="file://$PROJECT_DIR$/EQCAT/sites.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="70" column="19" lean-forward="true" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EQCAT/earthquake.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
+        <state relative-caret-position="170">
+          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -740,18 +712,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/EQCAT/shape.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-124">
-          <caret line="77" column="48" lean-forward="true" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
+        <state relative-caret-position="318">
+          <caret line="151" column="32" lean-forward="false" selection-start-line="151" selection-start-column="32" selection-end-line="151" selection-end-column="32" />
           <folding>
-            <element signature="e#0#67#0" expanded="true" />
+            <element signature="e#0#69#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EQCAT/earthquake.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="222" column="36" lean-forward="false" selection-start-line="222" selection-start-column="36" selection-end-line="222" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EQCAT/occurrence.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EQCAT/magnitude.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EQCAT/parse_files.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="541" column="102" lean-forward="true" selection-start-line="541" selection-start-column="102" selection-end-line="541" selection-end-column="102" />
+        <state relative-caret-position="174">
+          <caret line="104" column="28" lean-forward="true" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
