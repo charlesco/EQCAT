@@ -93,8 +93,8 @@ def parse_eqthr(quakes=''):
         shape = MultiPlaneShape(plane_list)
         quakes[eq_code] = {'code': eq_code, 'process': proc, 'mag': mag, 'shape': shape, 'name': name}
     fil.close()
-    mag_report.to_csv(results_path + parsing_reports_path + '01-EQTHR/magnitude_report.csv', sep=',', index=False)
-    pln_report.to_csv(results_path + parsing_reports_path + '01-EQTHR/planes_report.csv', sep=',', index=False)
+    # mag_report.to_csv(results_path + parsing_reports_path + '01-EQTHR/magnitude_report.csv', sep=',', index=False)
+    # pln_report.to_csv(results_path + parsing_reports_path + '01-EQTHR/planes_report.csv', sep=',', index=False)
     print(' - ' + str(mag_report.count()[0]) + ' magnitudes/process parsed')
     print(' - ' + str(pln_report.count()[0]) + ' rectangles parsed')
     return quakes
@@ -154,8 +154,8 @@ def parse_activity(quakes='', eq_category='all'):
             dico.update({'code': eq_code, 'name': row['NAME']})
             quakes[eq_code] = dico
             nb_new_quakes += 1
-    activity_report.to_csv(results_path + parsing_reports_path + '02-Seismic Activity Evaluation/' + eq_category +
-                           '/activity_report.csv', sep=',', index=False)
+    # activity_report.to_csv(results_path + parsing_reports_path + '02-Seismic Activity Evaluation/' + eq_category +
+    #                        '/activity_report.csv', sep=',', index=False)
     print('Nb sources updated : ' + str(nb_updated_quakes))
     print('Nb new sources : ' + str(nb_new_quakes))
     return quakes
@@ -216,8 +216,8 @@ def parse_frequencies(quakes=''):
                 quakes[code2] = ZoneEarthquake(quakes[code2])
                 activity_report.loc[len(activity_report)] = [code2, int(row['ANO']), typ, row['FRQ'], mag.min_mag,
                                                              row['BVL'], shape.lat, shape.lon, shape.depth, mag.desc()]
-        activity_report.to_csv(results_path + parsing_reports_path + '03-Frequencies/' + code + '.csv', sep=',',
-                               index=False)
+        # activity_report.to_csv(results_path + parsing_reports_path + '03-Frequencies/' + code + '.csv', sep=',',
+        #                        index=False)
     return quakes
 
 
@@ -274,7 +274,7 @@ def parse_rectangles(quakes):
                     quakes[eq_code]['shape'] = shape
                 if quakes[eq_code]['process'] == 'multi':
                     quakes[eq_code]['segments'] = [quakes[i] for i in quakes[eq_code]['segments']]
-                    quakes[eq_code]['proc'] = MultiSegmentProcess(quakes[eq_code]['segments'])
+                    quakes[eq_code]['process'] = MultiSegmentProcess(quakes[eq_code]['segments'])
                     quakes[eq_code] = MultiSegmentEarthquake(quakes[eq_code])
                 else:
                     quakes[eq_code] = SegmentEarthquake(quakes[eq_code])
@@ -528,11 +528,19 @@ def parse_quakes(category='all'):
     return q
 
 
-yesy = parse_quakes('major active faults')
+def parsing_reports():
+    yesy = parse_quakes('all active faults')
+    output = pd.DataFrame(columns=['Code', 'Process', 'Magnitude', 'Name', 'Shape'])
+    for cp in yesy:
+        seisme = yesy[cp]
+        sha = seisme.shape
+        try:
+            s = sha.shape_list[0].shape_coord
+        except AttributeError:
+            s = sha.shape_coord
 
-output = pd.DataFrame(columns=['Code', 'Process', 'Multi', 'AvrAct', 'LastAct', 'Alpha', 'Desc', 'Name'])
-for cp in yesy:
-    seisme = yesy[cp]
+        output.loc[len(output)] = [seisme.code, seisme.proc.desc(), seisme.mag.desc(), seisme.name, s]
+        output.to_csv(results_path + parsing_reports_path + '01-Active Faults/active_faults_report.csv', sep=',', index=False)
 
-
+parsing_reports()
 

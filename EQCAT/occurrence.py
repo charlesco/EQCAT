@@ -62,6 +62,7 @@ class YearFreqProcess(OccurrenceProcess):
     def occ_proba(self, time_lapse):
         return self.freq * time_lapse
 
+
 class MultiSegmentProcess(OccurrenceProcess):
     def __init__(self, segments):
         super(self.__class__, self).__init__()

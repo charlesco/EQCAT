@@ -65,28 +65,31 @@ class PlaneShape(BaseShape):
         self.pnt1_coord = (self.lat, self.lon)
         self.pnt1_xyz = (0, 0, self.depth)
         self.pnt2_xyz = (sin(self.strike) * self.length, cos(self.strike) * self.length, self.depth)
-        self.pnt2_coord = (self.lon + self.pnt2_xyz[0] / self.lon_km,
-                           self.lat + self.pnt2_xyz[1] / self.lat_km)
+        self.pnt2_coord = (self.lat + self.pnt2_xyz[1] / self.lat_km,
+                           self.lon + self.pnt2_xyz[0] / self.lon_km)
         if dip != 90.0:
             self.pnt3_xyz = (self.pnt2_xyz[0] + cos(self.strike) * cos(self.dip) * self.width,
                              self.pnt2_xyz[1] - sin(self.strike) * cos(self.dip) * self.width,
                              sin(self.dip) * self.width)
-            self.pnt3_coord = (self.lon + self.pnt3_xyz[0] / self.lon_km,
-                               self.lat + self.pnt3_xyz[1] / self.lat_km)
+            self.pnt3_coord = (self.lat + self.pnt3_xyz[1] / self.lat_km,
+                               self.lon + self.pnt3_xyz[0] / self.lon_km)
             self.pnt4_xyz = (cos(self.strike) * cos(self.dip) * self.width,
                              -sin(self.strike) * cos(self.dip) * self.width,
                              sin(self.dip) * self.width)
-            self.pnt4_coord = (self.lon + self.pnt4_xyz[0] / self.lon_km,
-                               self.lat + self.pnt4_xyz[1] / self.lat_km)
+            self.pnt4_coord = (self.lat + self.pnt4_xyz[1] / self.lat_km,
+                               self.lon + self.pnt4_xyz[0] / self.lon_km)
             self.shape = Polygon([(xyz[0], xyz[1]) for xyz in [self.pnt1_xyz, self.pnt2_xyz, self.pnt3_xyz,
                                                                self.pnt4_xyz, self.pnt1_xyz]])
+            self.shape_coord = Polygon([self.pnt1_coord, self.pnt2_coord, self.pnt3_coord, self.pnt4_coord,
+                                        self.pnt1_coord])
         else:
             self.pnt3_xyz = (self.pnt2_xyz[0], self.pnt2_xyz[1], self.pnt2_xyz[2] + self.width)
             self.pnt3_coord = self.pnt2_coord
             self.pnt4_xyz = (self.pnt1_xyz[0], self.pnt1_xyz[1], self.pnt1_xyz[2] + self.width)
             self.pnt4_coord = self.pnt1_coord
             self.shape = LineString([(xyz[0], xyz[1]) for xyz in [self.pnt1_xyz, self.pnt2_xyz]])
-        if not self.shape.is_valid:
+            self.shape_coord = LineString([self.pnt1_coord, self.pnt2_coord])
+        if not self.shape.is_valid or not self.shape_coord.is_valid:
             print("Warning : Invalid Shape")
             print(self.desc())
 
