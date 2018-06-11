@@ -165,7 +165,7 @@ def parse_multi(quakes):
             nb_unknown += 1
             # print('Unknown source code : ' + code)
     print('Nb sources updated : ' + str(nb_updated_quakes))
-    print('Nb unknown source codes : ' + str(nb_unknown))
+    # print('Nb unknown source codes : ' + str(nb_unknown))
     return quakes
 
 
@@ -531,8 +531,8 @@ def parsing_reports():
         seisme = yesy[cp]
         output.loc[len(output)] = [seisme.code, seisme.proc.desc(), seisme.mag.desc(), seisme.name,
                                    seisme.shape.shape_coord]
-        output.to_csv(results_path + parsing_reports_path + '01-Active Faults/active_faults_report.csv', sep=',',
-                      index=False)
+    output.to_csv(results_path + parsing_reports_path + '01-Active Faults/active_faults_report.csv', sep=',',
+                  index=False)
     yesy = parse_quakes('subduction')
     output = pd.DataFrame(columns=['Code', 'Process', 'Magnitude', 'Name', 'Shape'])
     for cp in yesy:

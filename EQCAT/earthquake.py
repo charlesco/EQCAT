@@ -12,6 +12,7 @@ simulation_reports_path = "03-Simulation Reports/"
 
 class Earthquake(object):
     def __init__(self, code, name, eqtype, crtype):
+        self.type = None
         self.code = code
         self.name = name
         self.eqtype = eqtype
@@ -21,6 +22,7 @@ class Earthquake(object):
 class SegmentEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
+        self.type = 'SegmentEarthquake'
         self.proc = dico['process']
         self.mag = dico['mag']
         self.shape = dico['shape']
@@ -60,6 +62,7 @@ class SegmentEarthquake(Earthquake):
 class MultiSegmentEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
+        self.type = 'MultiSegmentEarthquake'
         self.mag = dico['mag']
         self.shape = dico['shape']
         self.proc = dico['process']
@@ -102,6 +105,7 @@ class MultiSegmentEarthquake(Earthquake):
 class PointsEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
+        self.type = 'PointsEarthquake'
         self.mag = dico['mag']
         self.shape = dico['shape']
         self.proc = dico['process']
@@ -143,11 +147,11 @@ class PointsEarthquake(Earthquake):
 class MultiPointsEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
+        self.type = 'MultiPointsEarthquake'
         self.quakes = dico['earthquakes']
         self.proc = dico['process']
         self.mag = dico['mag']
         self.shape = dico['shape']
-        self
 
     def events(self, time_lapse, mag_step):
         out = []
@@ -179,6 +183,7 @@ class MultiPointsEarthquake(Earthquake):
 class DomainEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
+        self.type = 'DomainEarthquake'
         self.mag = dico['mag']
         self.dom_dict = dico['domains']
         self.proc = dico['process']
@@ -218,6 +223,7 @@ class DomainEarthquake(Earthquake):
 class ZoneEarthquake(Earthquake):
     def __init__(self, dico):
         super(self.__class__, self).__init__(dico['code'], dico['name'], dico['eqtype'], dico['correction'])
+        self.type = 'ZoneEarthquake'
         self.code1 = dico['code1']
         self.zone = dico['zone']
         self.mesh_id = dico['mesh_id']
@@ -250,6 +256,7 @@ class ZoneEarthquake(Earthquake):
 
 class HypoEarthquake(object):
     def __init__(self, dico):
+        self.type = 'HypoEarthquake'
         self.code = dico['code']
         self.mag = dico['mag']
         self.shape = dico['shape']

@@ -13,6 +13,7 @@ def magnitude_conversion(mag):
 
 class GutenbergRichter(object):
     def __init__(self, min_mag, b_val, max_mag=8):
+        self.type = 'GutenbergRichter'
         self.b_val = b_val
         self.beta = self.b_val * log(10)
         self.min_mag = magnitude_conversion(min_mag)
@@ -21,7 +22,7 @@ class GutenbergRichter(object):
         self.a2 = exp(-self.beta * self.max_mag)
 
     def desc(self):
-        return "GR(min=" + str(self.min_mag) + ",max=" + str(self.max_mag) + ",beta=" + str(self.beta) + ")"
+        return "GR(min=" + str(self.min_mag) + ",b_val=" + str(self.b_val) + ",max=" + str(self.max_mag) + ")"
 
     def cum_prob(self, mag):
         prob = (self.a1 - exp(-self.beta * mag)) / (self.a1 - self.a2)
@@ -40,6 +41,7 @@ class GutenbergRichter(object):
 
 class CharacteristicMag(object):
     def __init__(self, mag):
+        self.type = 'CharacteristicMag'
         mag = magnitude_conversion(mag)
         self.mag = mag
 
@@ -52,6 +54,7 @@ class CharacteristicMag(object):
 
 class DiscreteMagnitude(object):
     def __init__(self, dico):
+        self.type = 'DiscreteMagnitude'
         self.dico = dico
 
     def desc(self):
@@ -70,7 +73,7 @@ class DiscreteMagnitude(object):
 
 def plot_gutenberg(min_mag, b_val, max_mag=8):
     mag = GutenbergRichter(min_mag, b_val, max_mag)
-    print(mag.min_mag, mag.max_mag, mag.beta)
+    print(mag.desc())
     diff = int(round((mag.max_mag - mag.min_mag) * 10))
     mags = [mag.min_mag + d / 10 for d in range(diff)]
     probs = [mag.cum_prob(m) for m in mags]
